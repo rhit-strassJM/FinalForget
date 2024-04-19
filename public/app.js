@@ -3,7 +3,10 @@ const ui = new firebaseui.auth.AuthUI(firebase.auth());
 const uiConfig = {
   callbacks: {
     signInSuccessWithAuthResult(authResult, redirectUrl) {
-      return true;
+       // Redirect to homescreen.html after successful login
+       window.location.assign('homescreen.html');
+       // Return false to prevent the default redirect behavior
+       return false;
     },
     uiShown() {
       document.getElementById('loader').style.display = 'none';

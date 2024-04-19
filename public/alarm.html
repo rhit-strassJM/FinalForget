@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alarm Record</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        #recordingStatus {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Record your alarm here!!</h1>
+        <label for="alarmDate">Select Date:</label>
+        <input type="date" id="alarmDate">
+        <label for="alarmTime">Select Time:</label>
+        <input type="time" id="alarmTime">
+        <button id="recordButton">Record Audio</button>
+        <button id="stopButton" style="display: none;">Stop Recording</button>
+        <button id="uploadButton" style="display: none;">Upload to Firebase Storage</button>
+        <div id="recordingStatus"></div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-storage.js"></script>
+    <script>
+        var firebaseConfig = {
+          apiKey: "AIzaSyDzY5iuxQuSOBH33ek5RsF0AEIS_vl2CJ4",
+          authDomain: "forget-me-not-74a74.firebaseapp.com",
+          projectId: "forget-me-not-74a74",
+          storageBucket: "forget-me-not-74a74.appspot.com",
+          messagingSenderId: "214952191183",
+          appId: "1:214952191183:web:84d5d9a3b75bea6f1043ba",
+          measurementId: "G-LNF4FK3XM1"
+        };
+        firebase.initializeApp(firebaseConfig);
+      </script>
+      <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+      <link
+        type="text/css"
+        rel="stylesheet"
+        href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css"
+      />
+    <script src="alarm.js"></script>
+</body>
+</html>
