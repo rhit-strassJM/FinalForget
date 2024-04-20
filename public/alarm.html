@@ -6,6 +6,7 @@
     <title>Alarm Record</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <body style="background: #d1ecff;"></body>
     <style>
         #recordingStatus {
             margin-top: 20px;
@@ -15,23 +16,29 @@
 </head>
 <body>
     <div class="container">
-        <h1>Record your alarm here!!</h1>
-        <label for="alarmDate">Select Date:</label>
-        <input type="date" id="alarmDate">
-        <label for="alarmTime">Select Time:</label>
-        <input type="time" id="alarmTime">
-        <button id="recordButton">Record Audio</button>
-        <button id="stopButton" style="display: none;">Stop Recording</button>
-        <button id="uploadButton" style="display: none;">Upload to Firebase Storage</button>
+        <img src="\images\RecordAlarm.png" alt="Record alarm title" style="width:200px; height: auto;">
+        <div class="form-group">
+            <label for="alarmDate">Select Date:</label>
+            <input type="date" id="alarmDate" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="alarmTime">Select Time:</label>
+            <input type="time" id="alarmTime" class="form-control">
+        </div>
+        <button id="recordButton" class="btn btn-primary">Record Audio</button>
+        <button id="stopButton" class="btn btn-danger" style="display: none;">Stop Recording</button>
+        <button id="uploadButton" class="btn btn-success" style="display: none;">Save Alarm</button>
         <div id="recordingStatus"></div>
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-database.js"></script> 
     <script>
-        var firebaseConfig = {
+      var firebaseConfig = {
           apiKey: "AIzaSyDzY5iuxQuSOBH33ek5RsF0AEIS_vl2CJ4",
           authDomain: "forget-me-not-74a74.firebaseapp.com",
+          databaseURL: "https://forget-me-not-74a74-default-rtdb.firebaseio.com/",
           projectId: "forget-me-not-74a74",
           storageBucket: "forget-me-not-74a74.appspot.com",
           messagingSenderId: "214952191183",
@@ -39,13 +46,9 @@
           measurementId: "G-LNF4FK3XM1"
         };
         firebase.initializeApp(firebaseConfig);
-      </script>
-      <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
-      <link
-        type="text/css"
-        rel="stylesheet"
-        href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css"
-      />
+    </script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css">
     <script src="alarm.js"></script>
 </body>
 </html>
