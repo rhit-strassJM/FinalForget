@@ -1,36 +1,52 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Upload</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-    <h1>Upload images here!!</h1>
-    <input type="file" id="fileInput">
-    <button id="uploadButton">Upload</button>
+<body style="background: #d1ecff;">
+    <div class="container mt-5">
+        <img src="\images\UploadImage.png" alt="Record alarm title" style="width:200px; height: auto;">
+        <div class="custom-file mb-3">
+            <input type="file" class="custom-file-input" id="fileInput" onchange="updateFileName()">
+            <label class="custom-file-label" for="fileInput" id="fileInputLabel">Choose file</label>
+        </div>
+        <button id="uploadButton" class="btn btn-primary">Upload</button>
+        <div id="uploadMessage" class="mt-3"></div>
+    </div>
 
+    <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-storage.js"></script>
     <script>
-      var firebaseConfig = {
-        apiKey: "AIzaSyDzY5iuxQuSOBH33ek5RsF0AEIS_vl2CJ4",
-        authDomain: "forget-me-not-74a74.firebaseapp.com",
-        projectId: "forget-me-not-74a74",
-        storageBucket: "forget-me-not-74a74.appspot.com",
-        messagingSenderId: "214952191183",
-        appId: "1:214952191183:web:84d5d9a3b75bea6f1043ba",
-        measurementId: "G-LNF4FK3XM1"
-      };
-      firebase.initializeApp(firebaseConfig);
+       var firebaseConfig = {
+          apiKey: "AIzaSyDzY5iuxQuSOBH33ek5RsF0AEIS_vl2CJ4",
+          authDomain: "forget-me-not-74a74.firebaseapp.com",
+          projectId: "forget-me-not-74a74",
+          storageBucket: "forget-me-not-74a74.appspot.com",
+          messagingSenderId: "214952191183",
+          appId: "1:214952191183:web:84d5d9a"
+        };
+        firebase.initializeApp(firebaseConfig);
+
+        function updateFileName() {
+            var input = document.getElementById('fileInput');
+            var label = document.getElementById('fileInputLabel');
+            var fileName = input.files[0].name;
+            label.innerHTML = fileName;
+        }
     </script>
+    <!-- Firebase UI -->
     <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
-    <link
-      type="text/css"
-      rel="stylesheet"
-      href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css"
-    />
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="image.js"></script>
 </body>
 </html>

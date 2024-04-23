@@ -10,9 +10,13 @@ document.getElementById('uploadButton').addEventListener('click', function() {
         
         imagesRef.put(file).then(function(snapshot) {
             console.log('Image uploaded successfully!');
-            // You can do something after successful upload, like displaying a message to the user
+            // Reset file input and display upload message
+            document.getElementById('fileInputLabel').innerHTML = 'Choose file';
+            document.getElementById('uploadMessage').innerHTML = 'Image uploaded successfully!';
         }).catch(function(error) {
             console.error('Error uploading image:', error);
+            // Display error message if upload fails
+            document.getElementById('uploadMessage').innerHTML = 'Error uploading image: ' + error.message;
         });
     } else {
         console.error('No file selected');
