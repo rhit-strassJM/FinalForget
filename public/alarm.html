@@ -25,6 +25,9 @@
             <label for="alarmTime">Select Time:</label>
             <input type="time" id="alarmTime" class="form-control">
         </div>
+        <input type="file" id="audioFileInput" accept="audio/*" style="display: none;">
+        <button id="uploadSavedAudioButton" class="btn btn-info">Upload Saved Audio</button>
+        
         <button id="recordButton" class="btn btn-primary">Record Audio</button>
         <button id="stopButton" class="btn btn-danger" style="display: none;">Stop Recording</button>
         <button id="uploadButton" class="btn btn-success" style="display: none;">Save Alarm</button>
