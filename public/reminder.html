@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reminder App</title>
+  <!-- Firebase JavaScript SDK -->
+  <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-firestore.js"></script>
+</head>
+<body>
+  <h1>Create Reminder</h1>
+  <form id="reminderForm">
+    <label for="dateTime">Date and Time:</label>
+    <input type="datetime-local" id="dateTime" name="dateTime" required><br><br>
+    <label for="message">Message:</label><br>
+    <textarea id="message" name="message" rows="4" cols="50" required></textarea><br><br>
+    <button type="submit">Create Reminder</button>
+  </form>
+
+  <!-- Firebase configuration -->
+  <script>
+    const firebaseConfig = {
+        apiKey: "AIzaSyDzY5iuxQuSOBH33ek5RsF0AEIS_vl2CJ4",
+          authDomain: "forget-me-not-74a74.firebaseapp.com",
+          databaseURL: "https://forget-me-not-74a74-default-rtdb.firebaseio.com/",
+          projectId: "forget-me-not-74a74",
+          storageBucket: "forget-me-not-74a74.appspot.com",
+          messagingSenderId: "214952191183",
+          appId: "1:214952191183:web:84d5d9a3b75bea6f1043ba",
+          measurementId: "G-LNF4FK3XM1"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    // Get a reference to the Firestore database service
+    const db = firebase.firestore();
+
+    // Function to handle form submission
+    document.getElementById("reminderForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // Prevent default form submission
+
+      // Get form values
+      const dateTime = document.getElementById("dateTime").value;
+      const message = document.getElementById("message").value;
+
+      // Add reminder to Firestore
+      db.collection("reminders").add({
+        dateTime: dateTime,
+        message: message
+      })
+      .then(function(docRef) {
+        console.log("Reminder added with ID: ", docRef.id);
+        alert("Reminder created successfully!");
+        document.getElementById("reminderForm").reset(); // Reset form after submission
+      })
+      .catch(function(error) {
+        console.error("Error adding reminder: ", error);
+        alert("Error creating reminder. Please try again later.");
+      });
+    });
+  </script>
+</body>
+</html>
