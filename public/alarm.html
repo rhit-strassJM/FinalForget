@@ -14,25 +14,28 @@
     </style>
 </head>
 <body style="background: #d1ecff;">
+    <a href="homescreen.html">
+        <img src="\Images\Home.svg" style="width:50px;" class="w3-button">
+      </a>
     <div class="container">
         <img src="\images\RecordAlarm.png" alt="Record alarm title" style="width:200px; height: auto;">
         <div class="form-group">
             <label for="alarmDate">Select Date:</label>
-            <input type="date" id="alarmDate" class="form-control">
+            <input type="date" id="alarmDate" class="form-control" required>
         </div>
         <div class="form-group">
             <label for="alarmTime">Select Time:</label>
-            <input type="time" id="alarmTime" class="form-control">
+            <input type="time" id="alarmTime" class="form-control" required>
         </div>
         <div class="form-group">
             <label for="message">Message:</label>
-            <input type="text" id="message" class="form-control">
+            <input type="text" id="message" class="form-control" required>
         </div>
-        <input type="file" id="audioFileInput" accept="audio/*" style="display: none;">
+        <input type="file" id="audioFileInput" accept="audio/*" style="display: none;" required>
         <button id="uploadSavedAudioButton" class="btn btn-info">Upload Saved Audio</button>
         <button id="recordButton" class="btn btn-primary">Record Audio</button>
         <button id="stopButton" class="btn btn-danger" style="display: none;">Stop Recording</button>
-        <button id="uploadButton" class="btn btn-success" style="display: none;">Save Alarm</button>
+        <button id="submitButton" class="btn btn-success" disabled>Submit Alarm</button>
         <div id="recordingStatus"></div>
     </div>
 
