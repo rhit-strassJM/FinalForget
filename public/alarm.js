@@ -1,4 +1,18 @@
-// Initialize recording functionality
+
+const firebaseConfig = {
+    apiKey: "AIzaSyDzY5iuxQuSOBH33ek5RsF0AEIS_vl2CJ4",
+    authDomain: "forget-me-not-74a74.firebaseapp.com",
+    databaseURL: "https://forget-me-not-74a74-default-rtdb.firebaseio.com/",
+    projectId: "forget-me-not-74a74",
+    storageBucket: "forget-me-not-74a74.appspot.com",
+    messagingSenderId: "214952191183",
+    appId: "1:214952191183:web:84d5d9a3b75bea6f1043ba",
+    measurementId: "G-LNF4FK3XM1"
+  };
+  
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  
 const recordButton = document.getElementById('recordButton');
 const stopButton = document.getElementById('stopButton');
 const uploadButton = document.getElementById('uploadButton');
@@ -41,11 +55,13 @@ recordButton.addEventListener('click', async () => {
         // Get alarm date and time
         const alarmDate = alarmDateInput.value;
         const alarmTime = alarmTimeInput.value;
+        const dismessage = message.value;
 
         // Construct alarm object
         const alarmData = {
             audioFileName: filename,
-            alarmDateTime: `${alarmDate} ${alarmTime}`
+            alarmDateTime: `${alarmDate} ${alarmTime}`,
+            message: dismessage
         };
 
         // Show the upload button
@@ -102,7 +118,8 @@ async function uploadFileToStorage(file, alarmData) {
             await firebase.database().ref('alarms').push({
                 audioFileName: alarmData.audioFileName,
                 alarmDateTime: alarmData.alarmDateTime,
-                audioURL: downloadURL // Save the URL to the database
+                audioURL: downloadURL, // Save the URL to the database
+                message: alarmData.message
             });
         }
     );
@@ -121,11 +138,13 @@ document.getElementById('audioFileInput').addEventListener('change', async (even
         // Continue with your upload logic here, e.g., uploadSelectedFile(selectedFile);
         const alarmDate = alarmDateInput.value;
         const alarmTime = alarmTimeInput.value;
+        const dismessage = message.value;
 
         // Construct alarm object
         const alarmData = {
             audioFileName: selectedFile.name,
-            alarmDateTime: `${alarmDate} ${alarmTime}`
+            alarmDateTime: `${alarmDate} ${alarmTime}`,
+            message: dismessage
         };
 
         await uploadFileToStorage(selectedFile, alarmData);

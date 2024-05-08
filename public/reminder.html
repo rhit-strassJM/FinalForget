@@ -4,19 +4,31 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Reminder App</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <!-- Firebase JavaScript SDK -->
   <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-firestore.js"></script>
 </head>
-<body>
-  <h1>Create Reminder</h1>
-  <form id="reminderForm">
-    <label for="dateTime">Date and Time:</label>
-    <input type="datetime-local" id="dateTime" name="dateTime" required><br><br>
-    <label for="message">Message:</label><br>
-    <textarea id="message" name="message" rows="4" cols="50" required></textarea><br><br>
-    <button type="submit">Create Reminder</button>
-  </form>
+<body style="background: #d1ecff;">
+    <a href="homescreen.html">
+        <img src="\Images\Home.svg" style="width:50px;" class="w3-button">
+      </a>
+  <div class="container mt-5">
+    <h1 class="text-center mb-4">Create Reminder</h1>
+    <form id="reminderForm">
+      <div class="form-group">
+        <label for="dateTime">Date and Time:</label>
+        <input type="datetime-local" class="form-control" id="dateTime" name="dateTime" required>
+      </div>
+      <div class="form-group">
+        <label for="message">Message:</label>
+        <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Create Reminder</button>
+      <div id="successMessage" class="alert alert-success" style="display: none;">Reminder created successfully!</div>
+    </form>
+  </div>
 
   <!-- Firebase configuration -->
   <script>
@@ -44,18 +56,32 @@
       // Get form values
       const dateTime = document.getElementById("dateTime").value;
       const message = document.getElementById("message").value;
+      console.log(dateTime);
+      console.log(message);
 
-      // Add reminder to Firestore
-      db.collection("reminders").add({
-        dateTime: dateTime,
-        message: message
+      // Check if "reminders" collection exists, and create it if it doesn't
+      db.collection("reminders").get().then((querySnapshot) => {
+        if (querySnapshot.empty) {
+          console.log("Creating reminders collection");
+          return db.collection("reminders").doc();
+        }
       })
-      .then(function(docRef) {
+      .then(() => {
+        // Add reminder to Firestore
+        return db.collection("reminders").add({
+          dateTime: dateTime,
+          message: message
+        });
+      })
+      .then((docRef) => {
         console.log("Reminder added with ID: ", docRef.id);
-        alert("Reminder created successfully!");
+        document.getElementById("successMessage").style.display = "block"; // Show success message
         document.getElementById("reminderForm").reset(); // Reset form after submission
+        setTimeout(function() {
+          document.getElementById("successMessage").style.display = "none"; // Hide success message after 3 seconds
+        }, 3000);
       })
-      .catch(function(error) {
+      .catch((error) => {
         console.error("Error adding reminder: ", error);
         alert("Error creating reminder. Please try again later.");
       });
