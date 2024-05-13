@@ -1,37 +1,32 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="index.css">
-    <title>Forget-Me-Not</title>
-    
-  </head>
-  <body>
-    <div id="firebaseui-auth-container">
-      <img src="\images\Logo.png" alt="Logo!"  id="centered-image">
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <div class="login-container">
+    <img src="\Images\Logo.png" class="center">
+    <div id="main">
+      <h1>Sign In</h1>
+      <input id="email" type="text" placeholder="Email" class="form-control"></input>
+      <input id="password" type="password" placeholder="Password" class="form-control"></input>
+      <button id="submit" class="btn btn-primary btn-block">Submit</button>
+      <p><span>or</span></p>
+      <button id="sign-up" class="btn btn-secondary btn-block">Sign Up</button>
     </div>
-    <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-auth.js"></script>
-    <script>
-      var firebaseConfig = {
-        apiKey: "AIzaSyDzY5iuxQuSOBH33ek5RsF0AEIS_vl2CJ4",
-        authDomain: "forget-me-not-74a74.firebaseapp.com",
-        projectId: "forget-me-not-74a74",
-        storageBucket: "forget-me-not-74a74.appspot.com",
-        messagingSenderId: "214952191183",
-        appId: "1:214952191183:web:84d5d9a3b75bea6f1043ba",
-        measurementId: "G-LNF4FK3XM1"
-      };
-      firebase.initializeApp(firebaseConfig);
-    </script>
-    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
-    <link
-      type="text/css"
-      rel="stylesheet"
-      href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css"
-    />
-    <script src="./app.js"></script>
-  </body>
+
+    <div id="create-acct">
+      <h1>Create an Account</h1>
+      <input id="email-signup" type="text" placeholder="Email *" class="form-control"></input>
+      <input id="confirm-email-signup" type="email" placeholder="Confirm Email *" class="form-control"></input>
+      <input id="password-signup" type="password" placeholder="Password *" class="form-control"></input>
+      <input id="confirm-password-signup" type="password" placeholder="Confirm Password *" class="form-control"></input>
+      <button id="create-acct-btn" class="btn btn-primary btn-block">Create Account</button>
+      <button id="return-btn" class="btn btn-secondary btn-block">Return to Login</button>
+    </div>
+  </div>
+  <script type="module" src="script.js"></script>
+</body>
 </html>
