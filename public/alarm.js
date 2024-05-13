@@ -108,6 +108,14 @@ async function uploadFileToStorage(file, alarmData) {
                 audioURL: downloadURL,// Save the URL to the database
                 message: alarmData.message
             });
+
+            setTimeout(() => {
+                alarmDateInput.value = '';
+                alarmTimeInput.value = '';
+                message.value = '';
+                recordingStatus.innerText = '';
+                uploadButton.style.display = 'none';
+            }, 1000);
         }
     );
 }
